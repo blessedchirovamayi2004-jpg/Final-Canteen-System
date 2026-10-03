@@ -1,0 +1,402 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Beezybee Canteen Management System</title><style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#687386;--line:#e5e9f0;--brand:#1d4ed8;--brand2:#0f766e;--danger:#dc2626;--warn:#f59e0b;--ok:#16a34a}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}.login{min-height:100vh;display:grid;place-items:center;padding:24px;background:linear-gradient(135deg,#0f172a,#1d4ed8)}.login-card{width:min(440px,100%);background:white;border-radius:20px;padding:30px;box-shadow:0 24px 80px #0004}.logo{font-size:28px;font-weight:800}.sub{color:var(--muted);margin:7px 0 24px}.field{margin:12px 0}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field input,.field select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}.btn{border:0;border-radius:10px;padding:11px 15px;background:var(--brand);color:white;font-weight:700}.btn.secondary{background:#eef2ff;color:#1e3a8a}.btn.danger{background:#fee2e2;color:#991b1b}.btn.small{padding:7px 10px;font-size:13px}.hint{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5}.app{min-height:100vh}.top{height:66px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:5}.brand{font-weight:800}.userpill{font-size:13px;color:var(--muted);display:flex;gap:10px;align-items:center}.layout{display:flex;min-height:calc(100vh - 66px)}aside{width:235px;background:#111827;color:white;padding:18px 12px;flex:none}nav button{width:100%;text-align:left;background:transparent;color:#cbd5e1;border:0;border-radius:9px;padding:10px 12px;margin:2px 0;font-weight:600}nav button.active,nav button:hover{background:#1f2937;color:#fff}.main{padding:24px;max-width:1500px;width:100%;margin:auto}.pagehead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}.pagehead h1{margin:0;font-size:24px}.pagehead p{margin:5px 0;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}.metric{font-size:25px;font-weight:800;margin-top:6px}.muted{color:var(--muted);font-size:13px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:18px}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}.toolbar input,.toolbar select{padding:9px 10px;border:1px solid var(--line);border-radius:9px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:11px}table{border-collapse:collapse;width:100%;background:white}th,td{padding:10px 11px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap;font-size:13px}th{background:#f8fafc;font-size:12px;color:#4b5563;position:sticky;top:0}tr:last-child td{border-bottom:0}.status{display:inline-block;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:800}.status.good{background:#dcfce7;color:#166534}.status.restock{background:#fee2e2;color:#991b1b}.status.slow{background:#ffedd5;color:#9a3412}.readonly{opacity:.72}.notice{padding:10px 12px;background:#eff6ff;color:#1e40af;border-radius:9px;font-size:13px;margin-bottom:14px}.dangertext{color:var(--danger);font-weight:700}.oktext{color:var(--ok);font-weight:700}.modal{position:fixed;inset:0;background:#0007;display:grid;place-items:center;padding:20px;z-index:20}.modalbox{width:min(720px,100%);background:#fff;border-radius:16px;padding:20px}.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.formgrid .full{grid-column:1/-1}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}@media(max-width:900px){aside{width:70px}aside .navlabel{display:none}.cards{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}}@media(max-width:600px){.layout{display:block}aside{width:100%;padding:7px;overflow:auto;white-space:nowrap}nav{display:flex}nav button{width:auto}.main{padding:14px}.cards{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.formgrid .full{grid-column:auto}.top{padding:0 12px}}
+</style></head><body>
+<div id="login" class="login"><div class="login-card"><div class="logo">🍽️ Beezybee Canteen</div><div class="sub">Management & daily recording system</div><form id="loginForm"><div class="field"><label>Username</label><input id="username" autocomplete="username" required></div><div class="field"><label>Password</label><input id="password" type="password" autocomplete="current-password" required></div><button class="btn" style="width:100%">Sign in</button></form><div id="loginError" class="hint dangertext hidden"></div><div class="hint"><b>Demo accounts</b><br>Owner: owner / owner123<br>Manager: manager / manager123<br>Cashier 1: cashier1 / cashier123<br>Cashier 2: cashier2 / cashier123<br>Chef: chef / chef123</div></div></div>
+<div id="app" class="app hidden"><header class="top"><div class="brand">🍽️ Beezybee Canteen</div><div class="userpill"><span id="userInfo"></span><button class="btn small secondary" onclick="logout()">Log out</button></div></header><div class="layout"><aside><nav id="nav"></nav></aside><main class="main" id="main"></main></div></div>
+<div id="modal" class="modal hidden"><div class="modalbox" id="modalBox"></div></div>
+<script>
+const MENU=[
+  {
+    "category": "Starches",
+    "item": "Plain Sadza (1 portion)",
+    "unit": "Plate",
+    "price": 0.5
+  },
+  {
+    "category": "Starches",
+    "item": "Plain Rice (1 portion)",
+    "unit": "Plate",
+    "price": 1.0
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Vegetables (covo / rape / cabbage)",
+    "unit": "Portion",
+    "price": 0.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Beans",
+    "unit": "Portion",
+    "price": 1.0
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Matemba",
+    "unit": "Portion",
+    "price": 0.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Beef",
+    "unit": "Portion",
+    "price": 1.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Chicken Feet Stew",
+    "unit": "Portion",
+    "price": 0.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Chicken",
+    "unit": "Portion",
+    "price": 1.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Bream Fish",
+    "unit": "Portion",
+    "price": 1.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Chicken Offals",
+    "unit": "Portion",
+    "price": 1.0
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Gango",
+    "unit": "Portion",
+    "price": 1.0
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Derere",
+    "unit": "Portion",
+    "price": 0.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Muboora",
+    "unit": "Portion",
+    "price": 0.5
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Vegetables",
+    "unit": "Plate",
+    "price": 1.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Beans",
+    "unit": "Plate",
+    "price": 1.5
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Rice + Beef Fried",
+    "unit": "Plate",
+    "price": 2.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Beef Stew + Vegetables",
+    "unit": "Plate",
+    "price": 2.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Rice + Chicken Stew/Fried",
+    "unit": "Plate",
+    "price": 2.5
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Matemba",
+    "unit": "Plate",
+    "price": 1.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Rice + Chicken Offals",
+    "unit": "Plate",
+    "price": 2.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Chicken + Vegetables",
+    "unit": "Plate",
+    "price": 2.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Chicken Offals + Vegetables",
+    "unit": "Plate",
+    "price": 1.5
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Derere",
+    "unit": "Plate",
+    "price": 1.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Muboora",
+    "unit": "Plate",
+    "price": 1.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Bream Fish + Vegetables",
+    "unit": "Plate",
+    "price": 2.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Rice + Bream Fish",
+    "unit": "Plate",
+    "price": 2.5
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Gango + Vegetables",
+    "unit": "Plate",
+    "price": 1.5
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Rice + Gango",
+    "unit": "Plate",
+    "price": 2.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Chips + Chicken",
+    "unit": "Plate",
+    "price": 2.5
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Burger",
+    "unit": "Piece",
+    "price": 1.0
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Boiled Egg",
+    "unit": "Piece",
+    "price": 0.5
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Bread Bun",
+    "unit": "Piece",
+    "price": 0.5
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Tea",
+    "unit": "Cup",
+    "price": 0.5
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Chips",
+    "unit": "Portion",
+    "price": 1.0
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Sausage",
+    "unit": "Piece",
+    "price": 1.0
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Polony",
+    "unit": "Portion",
+    "price": 1.0
+  },
+  {
+    "category": "Drinks",
+    "item": "Bottled Water (500 ml)",
+    "unit": "Bottle",
+    "price": 0.5
+  },
+  {
+    "category": "Drinks",
+    "item": "Soft Drink (Coke/Fanta/Sprite 300 ml)",
+    "unit": "Bottle",
+    "price": 0.5
+  },
+  {
+    "category": "Drinks",
+    "item": "Maheu Traditional",
+    "unit": "Bottle",
+    "price": 0.5
+  },
+  {
+    "category": "Drinks",
+    "item": "Buttermilk Maheu",
+    "unit": "Bottle",
+    "price": 1.0
+  },
+  {
+    "category": "Drinks",
+    "item": "Tea (with milk/sugar)",
+    "unit": "Cup",
+    "price": 0.5
+  },
+  {
+    "category": "Drinks",
+    "item": "Revive Juice 1 L",
+    "unit": "Bottle",
+    "price": 1.0
+  },
+  {
+    "category": "Drinks",
+    "item": "Energy Drink 500 ml",
+    "unit": "Bottle",
+    "price": 0.5
+  },
+  {
+    "category": "Fruits",
+    "item": "Fruits (orange/banana/apple/avocado)",
+    "unit": "Piece",
+    "price": 1.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Cooking Oil 2L",
+    "unit": "bottle",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Mealie Meal 10Kg",
+    "unit": "kg",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Salt 1kg",
+    "unit": "kg",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Sugar 2kg",
+    "unit": "kg",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Masamba 500g",
+    "unit": "g",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Coffee",
+    "unit": "g",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Tomatoes",
+    "unit": "portion",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Onions",
+    "unit": "portion",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Spices",
+    "unit": "portion",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Firewood",
+    "unit": "portion",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Gas 1kg",
+    "unit": "kg",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Electricity",
+    "unit": "Watts",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Water Fee",
+    "unit": "Litres",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Transport Fee",
+    "unit": "$",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Food for Workers",
+    "unit": "$",
+    "price": 0.0
+  }
+];
+const users={owner:{password:'owner123',role:'Owner'},manager:{password:'manager123',role:'Manager'},cashier1:{password:'cashier123',role:'Cashier 1'},cashier2:{password:'cashier123',role:'Cashier 2'},chef:{password:'chef123',role:'Chef'}};
+const perms={Owner:{edit:['data','purchases','sales','cash'],view:['dashboard','data','purchases','purchaseAnalysis','sales','salesAnalysis','netSales','cash']},Manager:{edit:['purchases','sales','cash'],view:['dashboard','data','purchases','sales','cash']},'Cashier 1':{edit:[],view:['dashboard','data','purchases','sales','cash']},'Cashier 2':{edit:[],view:['dashboard','data','purchases','sales','cash']},Chef:{edit:[],view:['dashboard','data','purchases','sales','cash']}};
+let current=null;let state=JSON.parse(localStorage.getItem('beezybee_state')||'null')||{menu:MENU,purchases:[],sales:[],cash:[],openingCash:0};
+function save(){localStorage.setItem('beezybee_state',JSON.stringify(state))}function today(){return new Date().toISOString().slice(0,10)}function money(n){return '₹'+Number(n||0).toFixed(2)}function can(v,act){return perms[current.role][act].includes(v)}
+function login(e){e.preventDefault();let u=username.value.trim(),p=password.value; if(users[u]&&users[u].password===p){current={username:u,role:users[u].role};sessionStorage.setItem('beezybee_user',JSON.stringify(current));showApp()}else{loginError.textContent='Invalid username or password.';loginError.classList.remove('hidden')}}
+function logout(){sessionStorage.removeItem('beezybee_user');current=null;app.classList.add('hidden');login.classList.remove('hidden')}
+function showApp(){login.classList.add('hidden');app.classList.remove('hidden');userInfo.textContent=current.username+' · '+current.role;buildNav();go('dashboard')}
+function buildNav(){let all=[['dashboard','Dashboard'],['data','DATA / Menu'],['purchases','Purchases'],['purchaseAnalysis','Purchase Analysis'],['sales','Sales'],['salesAnalysis','Sales Analysis'],['netSales','Net Sales'],['cash','Cash Up']];nav.innerHTML=all.filter(x=>perms[current.role].view.includes(x[0])).map(x=>`<button id="nav-${x[0]}" onclick="go('${x[0]}')"><span class="navlabel">${x[1]}</span></button>`).join('')}
+function go(page){document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));let b=document.getElementById('nav-'+page);if(b)b.classList.add('active');({dashboard:dashboard,data:dataPage,purchases:purchasesPage,purchaseAnalysis:purchaseAnalysis,sales:salesPage,salesAnalysis:salesAnalysis,netSales:netSales,cash:cashPage}[page]||dashboard)()}
+function dashboard(){let sales=state.sales.reduce((a,x)=>a+x.qty*x.price,0),purch=state.purchases.reduce((a,x)=>a+x.qty*x.unitPrice,0);main.innerHTML=`<div class="pagehead"><div><h1>Dashboard</h1><p>Welcome, ${current.role}. Manage today's canteen records.</p></div></div><div class="cards"><div class="card"><div class="muted">Total Sales</div><div class="metric">${money(sales)}</div></div><div class="card"><div class="muted">Total Purchases</div><div class="metric">${money(purch)}</div></div><div class="card"><div class="muted">Net Sales</div><div class="metric">${money(sales-purch)}</div></div><div class="card"><div class="muted">Menu Items</div><div class="metric">${state.menu.length}</div></div></div><div class="grid2"><div class="panel"><h3>Today's activity</h3><p class="muted">Sales entries: ${state.sales.filter(x=>x.date===today()).length}</p><p class="muted">Purchase entries: ${state.purchases.filter(x=>x.date===today()).length}</p><p class="muted">Cash-up entries: ${state.cash.filter(x=>x.date===today()).length}</p></div><div class="panel"><h3>Access</h3><p class="muted">Your role: <b>${current.role}</b></p><p class="muted">${can('data','edit')?'You can edit menu data.':'Menu data is view-only for your role.'}</p><p class="muted">${perms[current.role].view.includes('purchaseAnalysis')?'Analysis modules are available.':'Analysis modules are restricted to the Owner.'}</p></div></div>`}
+function dataPage(){let edit=can('data','edit');main.innerHTML=`<div class="pagehead"><div><h1>DATA / Menu & Prices</h1><p>Search items, units and selling prices.</p></div>${edit?'<button class="btn" onclick="menuForm()">+ Add item</button>':''}</div><div class="toolbar"><input id="menuSearch" placeholder="Search item or category..." oninput="renderMenu()"></div><div class="tablewrap"><table><thead><tr><th>Category</th><th>Item</th><th>Unit</th><th>Selling Price</th>${edit?'<th></th>':''}</tr></thead><tbody id="menuBody"></tbody></table></div>`;renderMenu()}
+function renderMenu(){let q=(document.getElementById('menuSearch')?.value||'').toLowerCase();let arr=state.menu.filter(x=>(x.item+' '+x.category).toLowerCase().includes(q));menuBody.innerHTML=arr.map((x,i)=>`<tr><td>${x.category}</td><td>${x.item}</td><td>${x.unit}</td><td>${money(x.price)}</td>${can('data','edit')?`<td><button class="btn small secondary" onclick="menuForm(${state.menu.indexOf(x)})">Edit</button> <button class="btn small danger" onclick="deleteMenu(${state.menu.indexOf(x)})">Delete</button></td>`:''}</tr>`).join('')||'<tr><td colspan="5">No items found.</td></tr>'}
+function menuForm(i=null){let x=i===null?{category:'',item:'',unit:'',price:0}:state.menu[i];modal.classList.remove('hidden');modalBox.innerHTML=`<h2>${i===null?'Add':'Edit'} Menu Item</h2><div class="formgrid"><div class="field"><label>Category</label><input id="fcat" value="${x.category}"></div><div class="field"><label>Unit</label><input id="funit" value="${x.unit}"></div><div class="field full"><label>Item</label><input id="fitem" value="${x.item}"></div><div class="field"><label>Selling Price</label><input id="fprice" type="number" step="0.01" value="${x.price}"></div></div><div class="actions"><button class="btn secondary" onclick="closeModal()">Cancel</button><button class="btn" onclick="saveMenu(${i===null?'null':i})">Save</button></div>`}
+function saveMenu(i){let obj={category:fcat.value.trim(),item:fitem.value.trim(),unit:funit.value.trim(),price:Number(fprice.value||0)};if(!obj.item)return alert('Item name is required');if(i===null)state.menu.push(obj);else state.menu[i]=obj;save();closeModal();dataPage()}
+function deleteMenu(i){if(confirm('Delete this menu item?')){state.menu.splice(i,1);save();dataPage()}}function closeModal(){modal.classList.add('hidden')}
+function itemOptions(){return state.menu.map(x=>`<option value="${x.item.replaceAll('"','&quot;')}">${x.item}</option>`).join('')}
+function purchasesPage(){let edit=can('purchases','edit');main.innerHTML=`<div class="pagehead"><div><h1>Purchases</h1><p>Record supplier purchases with date, quantity and manually entered unit price.</p></div>${edit?'<button class="btn" onclick="purchaseForm()">+ Record purchase</button>':''}</div><div class="toolbar"><input id="purchaseSearch" placeholder="Search item..." oninput="renderPurchases()"><input id="purchaseDate" type="date" onchange="renderPurchases()"></div><div class="tablewrap"><table><thead><tr><th>Date</th><th>Item</th><th>Unit</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr></thead><tbody id="purchaseBody"></tbody></table></div>`;renderPurchases()}
+function renderPurchases(){let q=(purchaseSearch?.value||'').toLowerCase(),d=purchaseDate?.value||'';let arr=state.purchases.filter(x=>(!d||x.date===d)&&x.item.toLowerCase().includes(q));purchaseBody.innerHTML=arr.map(x=>`<tr><td>${x.date}</td><td>${x.item}</td><td>${x.unit}</td><td>${x.qty}</td><td>${money(x.unitPrice)}</td><td>${money(x.qty*x.unitPrice)}</td></tr>`).join('')||'<tr><td colspan="6">No purchases found.</td></tr>'}
+function purchaseForm(){modal.classList.remove('hidden');modalBox.innerHTML=`<h2>Record Purchase</h2><div class="formgrid"><div class="field"><label>Date</label><input id="pdate" type="date" value="${today()}"></div><div class="field"><label>Item</label><select id="pitem" onchange="syncUnit()"><option value="">Select item</option>${itemOptions()}</select></div><div class="field"><label>Unit</label><input id="punit" readonly></div><div class="field"><label>Quantity</label><input id="pqty" type="number" step="0.01" value="1"></div><div class="field"><label>Unit Price</label><input id="pprice" type="number" step="0.01"></div></div><div class="actions"><button class="btn secondary" onclick="closeModal()">Cancel</button><button class="btn" onclick="savePurchase()">Save</button></div>`}
+function syncUnit(){let x=state.menu.find(x=>x.item===pitem.value);punit.value=x?.unit||''}function savePurchase(){let x=state.menu.find(x=>x.item===pitem.value);if(!x)return alert('Select an item');state.purchases.push({date:pdate.value,item:x.item,unit:x.unit,qty:Number(pqty.value||0),unitPrice:Number(pprice.value||0)});save();closeModal();purchasesPage()}
+function salesPage(){let edit=can('sales','edit');main.innerHTML=`<div class="pagehead"><div><h1>Sales</h1><p>Record sold quantities. Unit and selling price are pulled from the menu.</p></div>${edit?'<button class="btn" onclick="salesForm()">+ Record sale</button>':''}</div><div class="toolbar"><input id="salesSearch" placeholder="Search item..." oninput="renderSales()"><input id="salesDate" type="date" onchange="renderSales()"></div><div class="tablewrap"><table><thead><tr><th>Date</th><th>Item</th><th>Unit</th><th>Opening</th><th>Added/Cooked</th><th>Sold</th><th>Wasted</th><th>Closing</th><th>Price</th><th>Sales</th></tr></thead><tbody id="salesBody"></tbody></table></div>`;renderSales()}
+function closingFor(date,item,opening,added,sold,wasted){return Number(opening||0)+Number(added||0)-Number(sold||0)-Number(wasted||0)}
+function renderSales(){let q=(salesSearch?.value||'').toLowerCase(),d=salesDate?.value||'';let arr=state.sales.filter(x=>(!d||x.date===d)&&x.item.toLowerCase().includes(q));salesBody.innerHTML=arr.map(x=>`<tr><td>${x.date}</td><td>${x.item}</td><td>${x.unit}</td><td>${x.opening}</td><td>${x.added}</td><td>${x.qty}</td><td>${x.wasted}</td><td>${closingFor(x.date,x.item,x.opening,x.added,x.qty,x.wasted)}</td><td>${money(x.price)}</td><td>${money(x.qty*x.price)}</td></tr>`).join('')||'<tr><td colspan="10">No sales found.</td></tr>'}
+function salesForm(){modal.classList.remove('hidden');modalBox.innerHTML=`<h2>Record Sale / Stock</h2><div class="formgrid"><div class="field"><label>Date</label><input id="sdate" type="date" value="${today()}"></div><div class="field"><label>Item</label><select id="sitem" onchange="syncSaleItem()"><option value="">Select item</option>${itemOptions()}</select></div><div class="field"><label>Unit</label><input id="sunit" readonly></div><div class="field"><label>Opening Stock</label><input id="sopen" type="number" step="0.01" value="0"></div><div class="field"><label>Added / Cooked</label><input id="sadded" type="number" step="0.01" value="0"></div><div class="field"><label>Sold</label><input id="ssold" type="number" step="0.01" value="0"></div><div class="field"><label>Wasted</label><input id="swasted" type="number" step="0.01" value="0"></div><div class="field"><label>Selling Price</label><input id="sprice" readonly></div></div><div class="actions"><button class="btn secondary" onclick="closeModal()">Cancel</button><button class="btn" onclick="saveSale()">Save</button></div>`}
+function syncSaleItem(){let x=state.menu.find(x=>x.item===sitem.value);sunit.value=x?.unit||'';sprice.value=x?.price||0}function saveSale(){let x=state.menu.find(x=>x.item===sitem.value);if(!x)return alert('Select an item');state.sales.push({date:sdate.value,item:x.item,unit:x.unit,opening:Number(sopen.value||0),added:Number(sadded.value||0),qty:Number(ssold.value||0),wasted:Number(swasted.value||0),price:x.price});save();closeModal();salesPage()}
+function totalsByDate(arr,date,fieldFn){return arr.filter(x=>x.date===date).reduce((a,x)=>a+fieldFn(x),0)}
+function dateRange(){let s=prompt('Start date (YYYY-MM-DD)',today());if(!s)return null;let e=prompt('End date (YYYY-MM-DD)',today());if(!e)return null;return [s,e]}
+function purchaseAnalysis(){if(!can('purchaseAnalysis','view'))return;main.innerHTML=`<div class="pagehead"><div><h1>Purchase Analysis</h1><p>Daily, weekly and monthly purchase totals.</p></div></div><div class="panel"><div class="toolbar"><input id="paStart" type="date" value="${today()}" onchange="renderPA()"><input id="paEnd" type="date" value="${today()}" onchange="renderPA()"></div><div class="cards" id="paCards"></div><div class="tablewrap" style="margin-top:16px"><table><thead><tr><th>Date</th><th>Total Purchases</th></tr></thead><tbody id="paBody"></tbody></table></div></div>`;renderPA()}
+function renderPA(){let s=paStart.value,e=paEnd.value,arr=state.purchases.filter(x=>x.date>=s&&x.date<=e),daily={};arr.forEach(x=>daily[x.date]=(daily[x.date]||0)+x.qty*x.unitPrice);let total=arr.reduce((a,x)=>a+x.qty*x.unitPrice,0);paCards.innerHTML=`<div class="card"><div class="muted">Period Total</div><div class="metric">${money(total)}</div></div><div class="card"><div class="muted">Days Recorded</div><div class="metric">${Object.keys(daily).length}</div></div><div class="card"><div class="muted">Average / Recorded Day</div><div class="metric">${money(Object.keys(daily).length?total/Object.keys(daily).length:0)}</div></div><div class="card"><div class="muted">Weekly Average</div><div class="metric">${money(total/Math.max(1,Math.ceil((new Date(e)-new Date(s)+86400000)/604800000)))}</div></div>`;paBody.innerHTML=Object.entries(daily).sort().map(([d,v])=>`<tr><td>${d}</td><td>${money(v)}</td></tr>`).join('')||'<tr><td colspan="2">No data.</td></tr>'}
+function salesAnalysis(){if(!can('salesAnalysis','view'))return;main.innerHTML=`<div class="pagehead"><div><h1>Sales Analysis</h1><p>Daily, weekly and monthly sales totals.</p></div></div><div class="panel"><div class="toolbar"><input id="saStart" type="date" value="${today()}" onchange="renderSA()"><input id="saEnd" type="date" value="${today()}" onchange="renderSA()"></div><div class="cards" id="saCards"></div><div class="tablewrap" style="margin-top:16px"><table><thead><tr><th>Date</th><th>Total Sales</th></tr></thead><tbody id="saBody"></tbody></table></div></div>`;renderSA()}
+function renderSA(){let s=saStart.value,e=saEnd.value,arr=state.sales.filter(x=>x.date>=s&&x.date<=e),daily={};arr.forEach(x=>daily[x.date]=(daily[x.date]||0)+x.qty*x.price);let total=arr.reduce((a,x)=>a+x.qty*x.price,0);saCards.innerHTML=`<div class="card"><div class="muted">Period Total</div><div class="metric">${money(total)}</div></div><div class="card"><div class="muted">Days Recorded</div><div class="metric">${Object.keys(daily).length}</div></div><div class="card"><div class="muted">Average / Recorded Day</div><div class="metric">${money(Object.keys(daily).length?total/Object.keys(daily).length:0)}</div></div><div class="card"><div class="muted">Weekly Average</div><div class="metric">${money(total/Math.max(1,Math.ceil((new Date(e)-new Date(s)+86400000)/604800000)))}</div></div>`;saBody.innerHTML=Object.entries(daily).sort().map(([d,v])=>`<tr><td>${d}</td><td>${money(v)}</td></tr>`).join('')||'<tr><td colspan="2">No data.</td></tr>'}
+function netSales(){if(!can('netSales','view'))return;main.innerHTML=`<div class="pagehead"><div><h1>Net Sales</h1><p>Net Sales = Sales − Purchases. Profit and expenses are not included.</p></div></div><div class="panel"><div class="toolbar"><input id="nsStart" type="date" value="${today()}" onchange="renderNS()"><input id="nsEnd" type="date" value="${today()}" onchange="renderNS()"></div><div class="cards" id="nsCards"></div><div class="tablewrap" style="margin-top:16px"><table><thead><tr><th>Date</th><th>Sales</th><th>Purchases</th><th>Net Sales</th></tr></thead><tbody id="nsBody"></tbody></table></div></div>`;renderNS()}
+function renderNS(){let s=nsStart.value,e=nsEnd.value,dates=new Set([...state.sales.map(x=>x.date),...state.purchases.map(x=>x.date)]);let rows=[...dates].filter(d=>d>=s&&d<=e).sort().map(d=>{let sales=totalsByDate(state.sales,d,x=>x.qty*x.price),p=totalsByDate(state.purchases,d,x=>x.qty*x.unitPrice);return {d,sales,p,net:sales-p}});let S=rows.reduce((a,x)=>a+x.sales,0),P=rows.reduce((a,x)=>a+x.p,0),N=S-P;nsCards.innerHTML=`<div class="card"><div class="muted">Sales</div><div class="metric">${money(S)}</div></div><div class="card"><div class="muted">Purchases</div><div class="metric">${money(P)}</div></div><div class="card"><div class="muted">Net Sales</div><div class="metric">${money(N)}</div></div><div class="card"><div class="muted">Average Net / Day</div><div class="metric">${money(rows.length?N/rows.length:0)}</div></div>`;nsBody.innerHTML=rows.map(x=>`<tr><td>${x.d}</td><td>${money(x.sales)}</td><td>${money(x.p)}</td><td class="${x.net<0?'dangertext':'oktext'}">${money(x.net)}</td></tr>`).join('')||'<tr><td colspan="4">No data.</td></tr>'}
+function cashPage(){let edit=can('cash','edit');main.innerHTML=`<div class="pagehead"><div><h1>Cash Up</h1><p>Opening Cash − Purchases + Sales = Closing Cash. Closing cash carries to the next day.</p></div>${edit?'<button class="btn" onclick="cashForm()">+ Cash Up</button>':''}</div><div class="panel"><div class="field"><label>Initial cash in hand at start of canteen</label><input id="initialCash" type="number" step="0.01" value="${state.openingCash||0}" ${edit?'':'readonly'} onchange="state.openingCash=Number(this.value||0);save();renderCash()" style="max-width:240px"></div><div class="tablewrap"><table><thead><tr><th>Date</th><th>Opening Cash</th><th>Purchases</th><th>Sales</th><th>Closing Cash</th><th>Notes</th></tr></thead><tbody id="cashBody"></tbody></table></div></div>`;renderCash()}
+function renderCash(){let arr=[...state.cash].sort((a,b)=>a.date.localeCompare(b.date));let previous=Number(state.openingCash||0);cashBody.innerHTML=arr.map(x=>{let p=totalsByDate(state.purchases,x.date,y=>y.qty*y.unitPrice),s=totalsByDate(state.sales,x.date,y=>y.qty*y.price),closing=previous-p+s;let row=`<tr><td>${x.date}</td><td>${money(previous)}</td><td>${money(p)}</td><td>${money(s)}</td><td class="oktext">${money(closing)}</td><td>${x.notes||''}</td></tr>`;previous=closing;return row}).join('')||'<tr><td colspan="6">No cash-up records.</td></tr>'}
+function cashForm(){modal.classList.remove('hidden');modalBox.innerHTML=`<h2>Cash Up</h2><div class="formgrid"><div class="field"><label>Date</label><input id="cdate" type="date" value="${today()}"></div><div class="field"><label>Notes</label><input id="cnotes"></div></div><p class="muted">The system calculates opening cash from the previous day's closing cash, then applies purchases and sales.</p><div class="actions"><button class="btn secondary" onclick="closeModal()">Cancel</button><button class="btn" onclick="saveCash()">Save</button></div>`}
+function saveCash(){if(state.cash.some(x=>x.date===cdate.value))return alert('A cash-up already exists for this date.');state.cash.push({date:cdate.value,notes:cnotes.value});state.cash.sort((a,b)=>a.date.localeCompare(b.date));save();closeModal();cashPage()}
+loginForm.addEventListener('submit',login);let saved=sessionStorage.getItem('beezybee_user');if(saved){current=JSON.parse(saved);showApp()}
+</script></body></html>

@@ -1,0 +1,356 @@
+[
+  {
+    "category": "Starches",
+    "item": "Plain Sadza (1 portion)",
+    "unit": "Plate",
+    "price": 0.5
+  },
+  {
+    "category": "Starches",
+    "item": "Plain Rice (1 portion)",
+    "unit": "Plate",
+    "price": 1.0
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Vegetables (covo / rape / cabbage)",
+    "unit": "Portion",
+    "price": 0.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Beans",
+    "unit": "Portion",
+    "price": 1.0
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Matemba",
+    "unit": "Portion",
+    "price": 0.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Beef",
+    "unit": "Portion",
+    "price": 1.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Chicken Feet Stew",
+    "unit": "Portion",
+    "price": 0.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Chicken",
+    "unit": "Portion",
+    "price": 1.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Bream Fish",
+    "unit": "Portion",
+    "price": 1.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Chicken Offals",
+    "unit": "Portion",
+    "price": 1.0
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Gango",
+    "unit": "Portion",
+    "price": 1.0
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Derere",
+    "unit": "Portion",
+    "price": 0.5
+  },
+  {
+    "category": "Relishes / Add-ons",
+    "item": "Muboora",
+    "unit": "Portion",
+    "price": 0.5
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Vegetables",
+    "unit": "Plate",
+    "price": 1.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Beans",
+    "unit": "Plate",
+    "price": 1.5
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Rice + Beef Fried",
+    "unit": "Plate",
+    "price": 2.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Beef Stew + Vegetables",
+    "unit": "Plate",
+    "price": 2.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Rice + Chicken Stew/Fried",
+    "unit": "Plate",
+    "price": 2.5
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Matemba",
+    "unit": "Plate",
+    "price": 1.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Rice + Chicken Offals",
+    "unit": "Plate",
+    "price": 2.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Chicken + Vegetables",
+    "unit": "Plate",
+    "price": 2.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Chicken Offals + Vegetables",
+    "unit": "Plate",
+    "price": 1.5
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Derere",
+    "unit": "Plate",
+    "price": 1.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Muboora",
+    "unit": "Plate",
+    "price": 1.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Bream Fish + Vegetables",
+    "unit": "Plate",
+    "price": 2.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Rice + Bream Fish",
+    "unit": "Plate",
+    "price": 2.5
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Sadza + Gango + Vegetables",
+    "unit": "Plate",
+    "price": 1.5
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Rice + Gango",
+    "unit": "Plate",
+    "price": 2.0
+  },
+  {
+    "category": "Combo Plates",
+    "item": "Chips + Chicken",
+    "unit": "Plate",
+    "price": 2.5
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Burger",
+    "unit": "Piece",
+    "price": 1.0
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Boiled Egg",
+    "unit": "Piece",
+    "price": 0.5
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Bread Bun",
+    "unit": "Piece",
+    "price": 0.5
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Tea",
+    "unit": "Cup",
+    "price": 0.5
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Chips",
+    "unit": "Portion",
+    "price": 1.0
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Sausage",
+    "unit": "Piece",
+    "price": 1.0
+  },
+  {
+    "category": "Breakfast / Snacks",
+    "item": "Polony",
+    "unit": "Portion",
+    "price": 1.0
+  },
+  {
+    "category": "Drinks",
+    "item": "Bottled Water (500 ml)",
+    "unit": "Bottle",
+    "price": 0.5
+  },
+  {
+    "category": "Drinks",
+    "item": "Soft Drink (Coke/Fanta/Sprite 300 ml)",
+    "unit": "Bottle",
+    "price": 0.5
+  },
+  {
+    "category": "Drinks",
+    "item": "Maheu Traditional",
+    "unit": "Bottle",
+    "price": 0.5
+  },
+  {
+    "category": "Drinks",
+    "item": "Buttermilk Maheu",
+    "unit": "Bottle",
+    "price": 1.0
+  },
+  {
+    "category": "Drinks",
+    "item": "Tea (with milk/sugar)",
+    "unit": "Cup",
+    "price": 0.5
+  },
+  {
+    "category": "Drinks",
+    "item": "Revive Juice 1 L",
+    "unit": "Bottle",
+    "price": 1.0
+  },
+  {
+    "category": "Drinks",
+    "item": "Energy Drink 500 ml",
+    "unit": "Bottle",
+    "price": 0.5
+  },
+  {
+    "category": "Fruits",
+    "item": "Fruits (orange/banana/apple/avocado)",
+    "unit": "Piece",
+    "price": 1.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Cooking Oil 2L",
+    "unit": "bottle",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Mealie Meal 10Kg",
+    "unit": "kg",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Salt 1kg",
+    "unit": "kg",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Sugar 2kg",
+    "unit": "kg",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Masamba 500g",
+    "unit": "g",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Coffee",
+    "unit": "g",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Tomatoes",
+    "unit": "portion",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Onions",
+    "unit": "portion",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Spices",
+    "unit": "portion",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Firewood",
+    "unit": "portion",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Gas 1kg",
+    "unit": "kg",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Electricity",
+    "unit": "Watts",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Water Fee",
+    "unit": "Litres",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Transport Fee",
+    "unit": "$",
+    "price": 0.0
+  },
+  {
+    "category": "Ingredients/Stock",
+    "item": "Food for Workers",
+    "unit": "$",
+    "price": 0.0
+  }
+]
